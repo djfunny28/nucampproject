@@ -31,12 +31,68 @@
                 </div>
 
                 <div class="col-md-4 col-xl-2 mt-4">
-                    <a href="#reserveForm" role="button" class="btn btn-lg btn-info" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Or call us at <br /><strong>1-206-555-1234</strong>">Reserve Campsite</a>
+                    <a href="#reserveForm" role="button" class="btn btn-lg btn-info" data-toggle="modal" data-target="#reserveModal">Reserve Campsite</a>
                 </div>
                 
             </div>
         </div>
     </header>
+
+    <div id="reserveModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h3 class="modal-title">Reserve a Campsite</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                            <form>
+                                <div class="form-group row">
+                                    <label for="numCampers" class="col-sm-6 col-form-label">Number of Campers</label>
+                                    <!-- Select Dropdown -->
+                                    <div class="col">
+                                        <select name="numCampers" id="numCampers" class="form-control">
+                                            <option selected>Select...</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Date -->
+                                <div class="form-group row">
+                                    <label for="date" class="col-sm-6 col-form-label">Date</label>
+                                    <div class="col">   
+                                        <input type="date" class="form-control" id="date" name="date" placeholder="Date" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="siteType" class="col-sm-6 col-form-label">Campsite Type</label>
+                                        <button type="siteType" class="btn bg-success">Tent</button>
+                                    <div class="col-0">
+                                        <button data-dismiss="modal" class="btn btn-primary">Rv</button>
+                                    </div>
+                                </div>
+                                <!-- Search Button -->
+                                <div class="form-group row">
+                                    <div class="col-1.5">
+                                        <button type="submit" class="btn bg-secondary">Cancel</button>
+                                    </div>
+                                    <div class="col">
+                                        <button data-dismiss="modal" class="btn btn-primary">Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
         <div class="container">
@@ -139,6 +195,14 @@
                         <span class="carousel-control-next-icon"></span>
                         <span class="sr-only">Next</span>
                     </a>
+                    <div class="btn-group" id="carouselButton">
+                        <button class="btn btn-danger btn-sm" id="carouselPause">
+                            <i class="fa fa-pause"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" id="carouselPause">
+                            <i class="fa fa-play"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -264,11 +328,17 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     
     <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+        $(function() {
+            $(".carousel").carousel( { interval: 2000 } );
+            $("#carouselPause").click(function(){
+                $(".carousel").carousel("pause");
+            });
+            $("#carouselPlay").click(function(){
+                $(".carousel").carousel("cycle");
+            });
+        });
     </script>
 
-</body>
+    </body>
 
 </html>
